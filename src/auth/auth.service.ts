@@ -34,6 +34,7 @@ export class AuthService {
       const newUser = new this.userModel( {
         password: bcryptjs.hashSync( password, 10 ),
         ...userData,
+
       } );
       
       await newUser.save();
@@ -83,7 +84,7 @@ export class AuthService {
     if ( !bcryptjs.compareSync( password, user.password )) {
       throw new UnauthorizedException('Not valid credentials - password')
     }
-
+    
     const { password:_, ...rest } = user.toJSON();
 
     return {
