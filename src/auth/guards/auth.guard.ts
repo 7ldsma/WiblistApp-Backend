@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
       if ( !user.isActive ) throw new UnauthorizedException( 'User is not active' )
       
       request['user'] = user;
-
+      request.user = { userId: user._id };
 
     } catch (error) {
 
